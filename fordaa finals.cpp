@@ -8,16 +8,21 @@
 using namespace std;
 
 struct Books{
+	
+	/*we used struct (a user-defined data structure that groups together different types of data)
+	 as the container for the related variales listed below*/
+	
+	//vectors for the variables defined to store the multiple book variable entries
 		vector<string> title;
 		vector<string> author;
 		vector<int> isbn;
 		
 	
-    // Function to display the data list in a formatted table
+    // Function to display the data list in a formatted table (dataList function)
     void dataList() {
         cout << endl << endl;
          cout << "--------------------------------------------------------------------------------------------------------" << endl ;
-        // Print the header row with fixed width for each column
+        // Print the header row with fixed width for each column (setw() ensures that each column has a fixed width.
         cout << left << setw(5) << "No." 
              << setw(40) << "T I T L E"   // Fixed width for title column
              << setw(30) << "A U T H O R" // Fixed width for author column
@@ -27,8 +32,8 @@ struct Books{
         cout << "--------------------------------------------------------------------------------------------------------" << endl;
 
         // Print the data rows with fixed column widths
-        for (size_t i = 0; i < title.size(); i++) {
-            cout << left << setw(5) << i + 1   // No. column
+        for (size_t i = 0; i < title.size(); i++) { //this loop runs through all books and prints their details in the table
+            cout << left << setw(5) << i + 1   // No. column (i+1 used to print row numbers starting from 1)
                  << setw(40) << title[i]      // Title column with fixed width
                  << setw(30) << author[i]     // Author column with fixed width
                  << setw(15) << isbn[i]       // ISBN column with fixed width
@@ -41,7 +46,7 @@ struct Books{
 
 	
 	
-	  // Function to input book data
+	  // Function to input book data (inputData Function) - prompts user to enter book details
     void inputData(int n) {
         string titleInput, authorInput;
         int isbnInput;
@@ -49,7 +54,7 @@ struct Books{
         for (int i = 1; i <= n; i++) {
             cout << "\nInput Title " << i << ": ";
             cin.ignore();  // To ignore any extra newline character
-            getline(cin, titleInput);  // Using getline to allow spaces in title
+            getline(cin, titleInput);  // Using getline to allow spaces in title (allows multi-word input)
 
             cout << "Input Author " << i << ": ";
             getline(cin, authorInput);  // Using getline for the author name as well
@@ -61,18 +66,19 @@ struct Books{
             title.push_back(titleInput);
             author.push_back(authorInput);
             isbn.push_back(isbnInput);
+            //push.back() is used to store the inputs within the defined vectors
         }
     }
     
     
 	
-    bool hasData() {
+    bool hasData() { //function returns true when the vectors are not empty, meaning there are existing book entries
     return !title.empty() && !author.empty() && !isbn.empty();
 }
 
     	
    	void option( ){	  
-    // Check if there is existing data
+    // Check if there is existing data, if there is existing data - it gives the user options: Search, Add, or Delete
     if (hasData()) {
     	
     	int n;
@@ -87,7 +93,7 @@ struct Books{
            
 
 		   
-		   if (n==1){
+		   if (n==1){ //option 1: search - user will be able to search through the existing list
            			dataList();
            				search();
            			option();
@@ -95,7 +101,7 @@ struct Books{
            	
 		   }
 		   
-		   if (n==2){
+		   if (n==2){ //option 2: add - user will add books to the list
 		   			int books;
 		   			cout << endl << endl << "Please enter the number of books you would like to add: " ;
 		   			cin>>books;
@@ -106,7 +112,7 @@ struct Books{
            	
 		   }
            
-           if (n==3){
+           if (n==3){ //option 3: delete - user will be able to delete an entry 
            				int num ;
            				dataList();
            				 cout << "Please enter coulumn number : " ;
@@ -127,7 +133,7 @@ struct Books{
            
         // You can add more options here like viewing or deleting data
     } 
-	else  {
+	else  { //if hasdata() function returns false, it will ask the user to input book entries
        
         // Option to input data could be added here
         int n;
@@ -259,7 +265,7 @@ string toLowerCase(string str) {
 
 
 
-int main() {
+int main() { //Displays the ASCII art for Book Data Management, initializes a book object, and calls the menu system
 	
     int n ;
     
