@@ -1,5 +1,5 @@
 #include <iostream>
-#include <vector> // pushback and erase  function
+#include <vector> // pushback and erase  function, and also the vector<datatype>
 #include <string>  // for getLine functon
 #include <iomanip>  // For setw()
 #include <algorithm>  // For transform
@@ -48,8 +48,8 @@ struct Books{
 
         for (int i = 1; i <= n; i++) {
             cout << "\nInput Title " << i << ": ";
-            cin.ignore();  // To ignore any extra newline character
-            getline(cin, titleInput);  // Using getline to allow spaces in title
+            cin.ignore();  // To ignore any extra newline character, or ignore white space 
+            getline(cin, titleInput);  // Using getline to allow spaces in title or  used to get the full input of the user including spaces
 
             cout << "Input Author " << i << ": ";
             getline(cin, authorInput);  // Using getline for the author name as well
@@ -176,6 +176,9 @@ string toLowerCase(string str) {
         transform(str.begin(), str.end(), str.begin(), ::tolower);
         return str;
     }
+    
+    
+    
 
  // Function to search for a book
     void search() {
@@ -207,6 +210,8 @@ string toLowerCase(string str) {
                 
             }
         }
+        
+        
         // Searching by Author
         else if (n == 2) {
             string inputAuthor;
