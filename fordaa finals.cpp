@@ -50,10 +50,11 @@ struct Books{
     void inputData(int n) {
         string titleInput, authorInput;
         string isbnInput;
+        
+        cin.ignore();  // Ignore leftover newline once at the start
 
         for (int i = 1; i <= n; i++) {
             cout << "\nInput Title " << i << ": ";
-            cin.ignore();  // To ignore any extra newline character
             getline(cin, titleInput);  // Using getline to allow spaces in title (allows multi-word input)
 
             cout << "Input Author " << i << ": ";
@@ -86,7 +87,8 @@ struct Books{
         cout << endl << endl << " There are existing books, what would you like to do with it ? " << endl << endl;
          cout<<  " 1. Search" << endl ;
           cout<<  " 2. Add " << endl ;
-           cout<<  " 3. Delete " << endl << endl  ;
+           cout<<  " 3. Delete " << endl   ;
+            cout<<  " 4. Data List " << endl << endl  ;
            
            cout << "Please enter desired number: " ;
            cin>> n;
@@ -94,7 +96,7 @@ struct Books{
 
 		   
 		   if (n==1){ //option 1: search - user will be able to search through the existing list
-           			dataList();
+           		
            				search();
            			option();
            			
@@ -106,7 +108,6 @@ struct Books{
 		   			cout << endl << endl << "Please enter the number of books you would like to add: " ;
 		   			cin>>books;
 				   	inputData(books);
-           			dataList();
            			cout << endl << endl << "Data added...." ;
            			option();
            	
@@ -114,13 +115,17 @@ struct Books{
            
            if (n==3){ //option 3: delete - user will be able to delete an entry 
            				int num ;
-           				dataList();
            				 cout << "Please enter coulumn number : " ;
         				   cin>> num;
            			deleteData(num); 
            			option();
            			
            	
+		   }
+		   
+		   if (n==4){
+		   	dataList();
+		   	option();
 		   }
 		   
 		   else{
@@ -143,7 +148,6 @@ struct Books{
         
         
           inputData(n);
-          dataList();
           option();
           
     }
@@ -168,7 +172,7 @@ void deleteData(int index) {
     isbn.erase(isbn.begin() + index);
 
     cout << endl <<  "Data at column " << index + 1 << " deleted successfully!" << endl;
-    dataList();
+    
 }
 
 
@@ -192,12 +196,13 @@ string toLowerCase(string str) {
             cout << endl << "Please input the title: "; 
             cin.ignore();  // Ignore whitespace
             getline(cin, inputTitle);  // Use getline to allow spaces in title
-            inputTitle = toLowerCase(inputTitle);  // Convert to lowercase for comparison
+            inputTitle = toLowerCase(inputTitle);  // Convert to lower case for comparison
 
+cout<< "SEARCH RESULTS: " << endl ;
             // Compare input title with each title in the vector
             for (size_t i = 0; i < title.size(); i++) {
                 if (toLowerCase(title[i]) == inputTitle) {
-                    found = true;  cout << "Found  at column " << i+1 << endl;
+                    found = true;  cout << "   " << i+1<< "   " <<title [i] << "   "<< author[i] << "   "<< isbn[i]<< endl;
                  
                 }
             }
@@ -219,7 +224,8 @@ string toLowerCase(string str) {
             for (size_t i = 0; i < author.size(); i++) {
                 if (toLowerCase(author[i]) == inputAuthor) {
                     found = true;
-                       cout << "Found  at column " << i+1 << endl;
+                       cout  << "   " << i+1 << "   " <<title [i] << "   "<< author[i] << "   "<<isbn[i]<< endl;
+                 
                     
                 }
             }
@@ -238,7 +244,8 @@ string toLowerCase(string str) {
             for (size_t i = 0; i < isbn.size(); i++) {
                 if (isbn[i] == inputIsbn) {
                     found = true;
-                   cout << "Found  at column " << i+1 << endl;
+                  cout << "   " << i+1 << "   " <<title [i] << "   "<< author[i]  << "   "<< isbn[i]<< endl;
+                 
                    
                 }
             }
@@ -253,9 +260,7 @@ string toLowerCase(string str) {
 		}
         
 
-        if (found) {
-            dataList();  // Display the updated data list
-        }
+       
     }
 
 
