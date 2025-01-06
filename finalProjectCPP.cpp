@@ -7,6 +7,9 @@
 
 using namespace std;
 
+	/*we used struct (a user-defined data structure that groups together different types of data)
+	 as the container for the related variales listed below*/
+	 
 struct Books{
 		vector<string> title;
 		vector<string> author;

@@ -15,7 +15,7 @@ struct Books{
 	//vectors for the variables defined to store the multiple book variable entries
 		vector<string> title;
 		vector<string> author;
-		vector<int> isbn;
+		vector<string> isbn;
 		
 	
     // Function to display the data list in a formatted table (dataList function)
@@ -49,7 +49,7 @@ struct Books{
 	  // Function to input book data (inputData Function) - prompts user to enter book details
     void inputData(int n) {
         string titleInput, authorInput;
-        int isbnInput;
+        string isbnInput;
 
         for (int i = 1; i <= n; i++) {
             cout << "\nInput Title " << i << ": ";
@@ -60,7 +60,7 @@ struct Books{
             getline(cin, authorInput);  // Using getline for the author name as well
 
             cout << "Input ISBN " << i << ": ";
-            cin >> isbnInput;  // ISBN is an integer, so we use cin
+            getline(cin, isbnInput);  // ISBN is an integer, so we use cin
 
             // Store data in the vectors
             title.push_back(titleInput);
@@ -230,9 +230,9 @@ string toLowerCase(string str) {
         }
         // Searching by ISBN
         else if (n == 3) {
-            int inputIsbn;
+            string inputIsbn;
             cout << endl << "Please input the ISBN: ";
-            cin >> inputIsbn;
+            getline(cin, inputIsbn);
 
             // Compare input ISBN with each ISBN in the vector
             for (size_t i = 0; i < isbn.size(); i++) {
