@@ -1,6 +1,6 @@
 #include <iostream>
-#include <vector>
-#include <string>
+#include <vector> // pushback and erase  function
+#include <string>  // for getLine functon
 #include <iomanip>  // For setw()
 #include <algorithm>  // For transform
 #include <cctype>     // For tolower
@@ -63,6 +63,8 @@ struct Books{
             isbn.push_back(isbnInput);
         }
     }
+    
+    
     
     
 	
@@ -142,6 +144,10 @@ struct Books{
           
     }
 }
+
+
+
+
 
 
 
