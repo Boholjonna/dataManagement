@@ -2,7 +2,7 @@
 #include <vector> // pushback and erase  function, and also the vector<datatype>
 #include <string>  // for getLine functon
 #include <iomanip>  // For setw()
-#include <algorithm>  // For transform
+#include <algorithm>  // For transform from the tolowerCase function
 #include <cctype>     // For tolower
 
 using namespace std;
