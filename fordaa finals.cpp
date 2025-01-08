@@ -60,8 +60,16 @@ struct Books{
             cout << "Input Author " << i << ": ";
             getline(cin, authorInput);  // Using getline for the author name as well
 
+		do{
+		
             cout << "Input ISBN " << i << ": ";
             getline(cin, isbnInput);  // ISBN is an integer, so we use cin
+            
+            if(isbnInput.length()!=10 && isbnInput.length()!=13){
+            	cout << endl <<"Invalid input, make sure ISBN is either 10 or 13 digits." << endl << endl;
+			} 
+            
+        } while (isbnInput.length()!=10 && isbnInput.length()!=13);
 
             // Store data in the vectors
             title.push_back(titleInput);
@@ -84,14 +92,21 @@ struct Books{
     	
     	int n;
     	
-        cout << endl << endl << " There are existing books, what would you like to do with it ? " << endl << endl;
-         cout<<  " 1. Search" << endl ;
-          cout<<  " 2. Add " << endl ;
-           cout<<  " 3. Delete " << endl   ;
-            cout<<  " 4. Data List " << endl << endl  ;
-           
-           cout << "Please enter desired number: " ;
-           cin>> n;
+       do {
+            cout << endl << endl << "There are existing books, what would you like to do with it?" << endl << endl;
+            cout << "1. Search" << endl;
+            cout << "2. Add" << endl;
+            cout << "3. Delete" << endl;
+            cout << "4. Data List" << endl << endl;
+            cout << "Please enter desired number: ";
+            cin >> n;
+
+            if (cin.fail() || n < 1 || n > 4) {
+                cin.clear();  // Clear error flag
+                cin.ignore(numeric_limits<streamsize>::max(), '\n');  // Discard invalid input
+                cout << endl << "Invalid Input. Please enter a number between 1 and 4." << endl;
+            }
+        } while (n < 1 || n > 4);
            
 
 		   
@@ -142,9 +157,21 @@ struct Books{
        
         // Option to input data could be added here
         int n;
-		    cout << " Data is empty, please input data....... " << endl  << endl ;
-		    cout << " How many books would you like to input? : " ;
+        
+        do{
+		
+		    cout << "Data is empty, please input data....... " << endl  << endl ;
+		    cout << "How many books would you like to input? : " ;
 		    cin>> n;
+		    
+		    if (cin.fail() || n < 1) {
+                cin.clear();  // Clear error flag
+                cin.ignore(numeric_limits<streamsize>::max(), '\n');  // Discard invalid input
+                cout << endl << "Invalid Input. Please enter a valid number." << endl << endl ;
+            }
+		    
+		    
+		}while (n < 1);
         
         
           inputData(n);
@@ -185,10 +212,19 @@ string toLowerCase(string str) {
     void search() {
         bool found = false;
         int n;
-        cout << endl << endl << "What would you like to search for? ";
-        cout << endl << "1. Title " << endl << "2. Author" << endl << "3. ISBN"; 
-        cout << endl << "Enter your choice: "; 
-        cin >> n;
+        do {
+            cout << endl << endl << "What would you like to search for? ";
+            cout << endl << "1. Title " << endl << "2. Author" << endl << "3. ISBN" << endl << "4. Book Number"; 
+            cout << endl << "Enter your choice: "; 
+            cin >> n;
+
+            if (cin.fail() || n < 1 || n > 4) {
+                cin.clear();  // Clear error flag
+                cin.ignore(numeric_limits<streamsize>::max(), '\n');  // Discard invalid input
+                cout << "Invalid Input. Please enter a number between 1 and 4." << endl;
+            }
+        } while (n < 1 || n > 4);
+
 
         // Searching by Title
         if (n == 1) {
@@ -198,7 +234,7 @@ string toLowerCase(string str) {
             getline(cin, inputTitle);  // Use getline to allow spaces in title
             inputTitle = toLowerCase(inputTitle);  // Convert to lower case for comparison
 
-cout<< "SEARCH RESULTS: " << endl ;
+cout<< endl << "SEARCH RESULTS: " << endl ;
             // Compare input title with each title in the vector
             for (size_t i = 0; i < title.size(); i++) {
                 if (toLowerCase(title[i]) == inputTitle) {
@@ -254,10 +290,25 @@ cout<< "SEARCH RESULTS: " << endl ;
                 cout << "ISBN not found." << endl;
             }
         }
-        
-        else{
-        	cout << endl <<  "Invalid Input " ;
+        //finding with index
+        else if (n==4){
+        	int indexBook;
+        	cout << endl << "Please input Book Number: ";
+        	cin >> indexBook;
+        	
+        	//find in the book index
+        	
+        	// Check if the input index is within the valid range
+            if (indexBook > 0 && indexBook <= title.size()) {
+        		found = true;
+                  cout << "   " << indexBook << "   " <<title [indexBook-1] << "   "<< author[indexBook-1]  << "   "<< isbn[indexBook-1]<< endl;
+			}
+			
+			if (!found) {
+                cout << "Book number not found." << endl;
+            }
 		}
+        
         
 
        
