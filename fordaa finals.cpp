@@ -183,15 +183,37 @@ bool isValidISBN(const string& userInput) {
 		   }
            
            case 3: { //option 3: delete - user will be able to delete an entry 
+           int nb;
+           cout << endl << "How many books would you like to delete? : "  ;
+               cin >> nb ;
+               
+               if (nb>=1){
+			   
+			   
            				int num ;
+           				
+           				for (int i=0 ; i<nb ; i++ ){
+					
            				cout << endl << "=========================================================================================================================" << endl;
-           				 cout << "Please enter coulumn number : " ;
+           				 cout << "           Please enter coulumn number  :" ;
         				   cin>> num;
-           			deleteData(num); 
-           			option();
+           			           deleteData(num); 
+           			
+           		}
+           		
+           		
+           		}
+           		
+           		else {
+           			 cout  << endl << endl << "Invalid input....."  << endl << endl ;
+           			 
+           			  
+				   }
            			
            	
+           	option();
 		   }
+	
 		   
 		   case 4 : {
 		   	dataList();
@@ -224,7 +246,7 @@ bool isValidISBN(const string& userInput) {
 		   			
 		    cout << " Data is empty, please input data....... " << endl  << endl ;
 		    cout << " How many books would you like to input? : " ;
-		    cin>> num;
+		    cin >> num;
 		    
         if (cin.fail() || num <= 0) {
                 cin.clear(); // Clear the error flag
@@ -265,7 +287,7 @@ void deleteData(int index) {
     
     cout << endl << "=========================================================================================================================" << endl;
 		   			
-
+		dataList();
     cout << endl <<  "Data at column " << index + 1 << " deleted successfully!" << endl;
     
 }
@@ -431,8 +453,6 @@ int main() { //Displays the ASCII art for Book Data Management, initializes a bo
 \____/  \___/  \___/\_| \_/ |___/ \_| |_/\_/\_| |_/ \_|  |_/\_| |_/\_| \_/\_| |_/\____/\____/\_|  |_/\____/\_| \_/ \_/  
                                                                                                                         
                                                                                                                         )" << endl ;  
-
-cout << "=========================================================================================================================" << endl << endl;
 
     
      Books book; 
