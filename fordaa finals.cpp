@@ -80,7 +80,7 @@ struct Books{
     	
    	void option( ){	  
     // Check if there is existing data, if there is existing data - it gives the user options: Search, Add, or Delete
-    if (hasData()) {
+    if (hasData() )  {
     	
     	int n;
     	
@@ -93,9 +93,16 @@ struct Books{
            cout << "Please enter desired number: " ;
            cin>> n;
            
+           
+           
+           
 
+        switch (n){
+        	
+        	
+		
 		   
-		   if (n==1){ //option 1: search - user will be able to search through the existing list
+		 case 1 : { //option 1: search - user will be able to search through the existing list
            		
            				search();
            			option();
@@ -103,7 +110,7 @@ struct Books{
            	
 		   }
 		   
-		   if (n==2){ //option 2: add - user will add books to the list
+		   case 2:{ //option 2: add - user will add books to the list
 		   			int books;
 		   			cout << endl << endl << "Please enter the number of books you would like to add: " ;
 		   			cin>>books;
@@ -113,7 +120,7 @@ struct Books{
            	
 		   }
            
-           if (n==3){ //option 3: delete - user will be able to delete an entry 
+           case 3: { //option 3: delete - user will be able to delete an entry 
            				int num ;
            				 cout << "Please enter coulumn number : " ;
         				   cin>> num;
@@ -123,34 +130,46 @@ struct Books{
            	
 		   }
 		   
-		   if (n==4){
+		   case 4 : {
 		   	dataList();
 		   	option();
 		   }
 		   
-		   else{
+		   
+		   default :
+		   {
 		   	cout << endl << endl << "Invalid Input...  " ;
 		   	option();
+		   	
 		   }
 		   
-           
-           
+       }
+     }
            
         // You can add more options here like viewing or deleting data
-    } 
+    
 	else  { //if hasdata() function returns false, it will ask the user to input book entries
        
         // Option to input data could be added here
-        int n;
+        int num;
 		    cout << " Data is empty, please input data....... " << endl  << endl ;
 		    cout << " How many books would you like to input? : " ;
-		    cin>> n;
+		    cin>> num;
         
-        
-          inputData(n);
-          option();
+        if (cin.fail() || num <= 0) {
+                cin.clear(); // Clear the error flag
+                cin.ignore(numeric_limits<streamsize>::max(), '\n'); // Discard invalid input
+                cout << "Invalid input! Please enter a valid positive number..." << endl << endl ;
+                option();
+            } else {
+                // Valid input
+                inputData(num);
+                option();
+                
+            }
           
     }
+
 }
 
 
