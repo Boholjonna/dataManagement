@@ -44,12 +44,38 @@ struct Books{
     }
 	
 
+
+
+
+
+bool isValidISBN(const string& userInput) {
+    // Check if the input length is either 10 or 13
+    if (userInput.length() != 10 && userInput.length() != 13) {
+        return false;
+    }
+
+    // Check if all characters are digits
+    for (char ch : userInput) {
+        if (!isdigit(ch)) {
+            return false;
+        }
+    }
+
+    // Check if the number is greater than or equal to 0 (implicitly true since it's numeric)
+    // No need for further check as negative numbers can't exist in numeric-only string.
+
+    return true;
+}
+
+
+
+
 	
 	
 	  // Function to input book data (inputData Function) - prompts user to enter book details
     void inputData(int n) {
         string titleInput, authorInput;
-        string isbnInput;
+        string  isbnInput;
         
         cin.ignore();  // Ignore leftover newline once at the start
 
@@ -61,12 +87,22 @@ struct Books{
             getline(cin, authorInput);  // Using getline for the author name as well
 
             cout << "Input ISBN " << i << ": ";
-            getline(cin, isbnInput);  // ISBN is an integer, so we use cin
+             getline(cin, isbnInput);  // ISBN is an integer, so we use cin
 
             // Store data in the vectors
+            
+            if (isValidISBN(isbnInput)){
+			
             title.push_back(titleInput);
             author.push_back(authorInput);
             isbn.push_back(isbnInput);
+        }
+        
+        else{
+        	cout<<  endl << endl << "Invalid ISBN..IT must be 10 or 13 digits only...this data is not added.." << endl << endl ;
+        	
+        	
+		}
             //push.back() is used to store the inputs within the defined vectors
         }
     }
@@ -257,7 +293,7 @@ cout<< "SEARCH RESULTS: " << endl ;
         else if (n == 3) {
             string inputIsbn;
             cout << endl << "Please input the ISBN: ";
-            getline(cin, inputIsbn);
+             getline(cin, inputIsbn); 
 
             // Compare input ISBN with each ISBN in the vector
             for (size_t i = 0; i < isbn.size(); i++) {
