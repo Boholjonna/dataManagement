@@ -183,32 +183,17 @@ bool isValidISBN(const string& userInput) {
 		   }
            
            case 3: { //option 3: delete - user will be able to delete an entry 
-           int nb;
-           cout << endl << "How many books would you like to delete? : "  ;
-               cin >> nb ;
+           
+           /*char title ;
+           cout << endl << "Name of the title you would like to delete? : "  ;
+               cin >> title ;
                
-               if (nb>=1){
-			   
-			   
-           				int num ;
-           				
-           				for (int i=0 ; i<nb ; i++ ){
-					
-           				cout << endl << "=========================================================================================================================" << endl;
-           				 cout << "           Please enter coulumn number  :" ;
-        				   cin>> num;
-           			           deleteData(num); 
-           			
-           		}
-           		
-           		
-           		}
-           		
-           		else {
-           			 cout  << endl << endl << "Invalid input....."  << endl << endl ;
-           			 
-           			  
-				   }
+               deleteData(title);
+               
+               */			                  
+               
+            
+		
            			
            	
            	option();
@@ -267,30 +252,31 @@ bool isValidISBN(const string& userInput) {
 
 
 // Function to delete an entry by index
-void deleteData(int index) {
-    // Check if index is valid
-    if (index < 1 || index > title.size()) {
-    	
-    	cout << endl << "=========================================================================================================================" << endl;
-		   			
-        cout << "Invalid index! Please enter a valid number." << endl;
-        return;
-    }
-
-    // Adjust index to match zero-based indexing of vectors
-    index--;
-
-    // Erase the elements from all vectors
+/*
+void deleteData(char title) {
+	
+		for (int i = 0; i < title.size(); i++){
+		 if ( title == title[i] )
+		 
+	 // Erase the elements from all vectors 
     title.erase(title.begin() + index);
     author.erase(author.begin() + index);
     isbn.erase(isbn.begin() + index);
     
-    cout << endl << "=========================================================================================================================" << endl;
-		   			
-		dataList();
-    cout << endl <<  "Data at column " << index + 1 << " deleted successfully!" << endl;
+    // Adjust index to match zero-based indexing of vectors
     
-}
+
+    
+    
+		
+	}
+	index--;
+	
+    
+    
+		dataList();
+  
+}*/
 
 
 string toLowerCase(string str) {
@@ -302,84 +288,21 @@ string toLowerCase(string str) {
     void search() {
         bool found = false;
         int n;
-        do {
         	
         	cout << endl << "=========================================================================================================================" << endl;
 		   			
-            cout << endl << endl << "What would you like to search for? ";
-            cout << endl << "1. Title " << endl << "2. Author" << endl << "3. ISBN" << endl << "4. Book Number"; 
-            cout << endl << "Enter your choice: "; 
+            cout << endl << endl << "Please input the ISBN:";
             cin >> n;
 
-            if (cin.fail() || n < 1 || n > 4) {
+            if (cin.fail() || isbn.size()) {
                 cin.clear();  // Clear error flag
                 cin.ignore(numeric_limits<streamsize>::max(), '\n');  // Discard invalid input
                 
                 cout << endl << "=========================================================================================================================" << endl;
 		   			
-                cout << "Invalid Input. Please enter a number between 1 and 4." << endl;
-            }
-        } while (n < 1 || n > 4);
-
-
-        // Searching by Title
-        if (n == 1) {
-            string inputTitle;
-            
-            cout << endl << "=========================================================================================================================" << endl;
-		   			
-            cout << endl << "Please input the title: "; 
-            cin.ignore();  // Ignore whitespace
-            getline(cin, inputTitle);  // Use getline to allow spaces in title
-            inputTitle = toLowerCase(inputTitle);  // Convert to lower case for comparison
-
-cout<< endl << "SEARCH RESULTS: " << endl ;
-            // Compare input title with each title in the vector
-            for (size_t i = 0; i < title.size(); i++) {
-                if (toLowerCase(title[i]) == inputTitle) {
-                	
-                	cout << endl << "=========================================================================================================================" << endl;
-		   			
-                    found = true;  cout << "   " << i+1<< "   " <<title [i] << "   "<< author[i] << "   "<< isbn[i]<< endl;
-                 
-                }
+                cout << "Invalid Input." << endl;
             }
 
-            if (!found) {
-                cout << "Title not found." << endl;
-                
-            }
-        }
-        // Searching by Author
-        else if (n == 2) {
-            string inputAuthor;
-            cout << endl << "=========================================================================================================================" << endl;
-		   			
-            cout << endl << "Please input the author: ";
-            cin.ignore();  // Ignore whitespace
-            getline(cin, inputAuthor);  // Use getline to allow spaces in author name
-            inputAuthor = toLowerCase(inputAuthor);  // Convert to lowercase for comparison
-cout<< endl << "SEARCH RESULTS: " << endl ;
-            // Compare input author with each author in the vector
-            for (size_t i = 0; i < author.size(); i++) {
-                if (toLowerCase(author[i]) == inputAuthor) {
-                	cout << endl << "=========================================================================================================================" << endl;
-		   			
-                    found = true;
-                       cout  << "   " << i+1 << "   " <<title [i] << "   "<< author[i] << "   "<<isbn[i]<< endl;
-                 
-                    
-                }
-            }
-
-            if (!found) {
-            	cout << endl << "=========================================================================================================================" << endl;
-		   			
-                cout << "Author not found." << endl;
-            }
-        }
-        // Searching by ISBN
-        else if (n == 3) {
             string inputIsbn;
             cout << endl << "=========================================================================================================================" << endl;
 		   			
@@ -402,7 +325,6 @@ cout<< endl << "SEARCH RESULTS: " << endl ;
             if (!found) {
                 cout << "ISBN not found." << endl;
             }
-        }
         //finding with index
         else if (n==4){
         	int indexBook;
